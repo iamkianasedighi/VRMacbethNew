@@ -1,18 +1,25 @@
-# Unity folders to ignore
+# =====================
+# Unity
+# =====================
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
 [Ll]ogs/
-[Uu]ser[Ss]ettings/
+[Uu]ser[Sss]ettings/
 
-# IDE / OS files
+# =====================
+# IDE / OS
+# =====================
 .vs/
 .vscode/
 .DS_Store
+Thumbs.db
 
-# Unity/VS generated files
+# =====================
+# Unity / Visual Studio
+# =====================
 *.csproj
 *.sln
 *.user
@@ -25,5 +32,12 @@
 *.opendb
 *.VC.db
 
-# Plastic SCM (only ignore if you are NOT using Plastic)
+# =====================
+# Plastic SCM
+# =====================
 .plastic/
+
+# =====================
+# Addressables / Cache
+# =====================
+/Library/PackageCache/
