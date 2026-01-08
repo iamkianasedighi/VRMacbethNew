@@ -1,5 +1,13 @@
 fileFormatVersion: 2
 guid: af68957194eba094d8c4fdf75cf1782f
+AssetOrigin:
+  serializedVersion: 1
+  productId: 316897
+  packageName: 'Ultimate Interior Package: Funiture, Household Items, Foods - Low
+    Poly Assets'
+  packageVersion: 1.0
+  assetPath: Assets/Fries and Seagull/Ultimate Interior Pack/Models/Bottle 14.fbx
+  uploadId: 751214
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -16,8 +24,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -35,7 +41,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 4
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -90,7 +96,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 4
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
@@ -107,11 +113,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 316897
-  packageName: 'Ultimate Interior Package: Funiture, Household Items, Foods - Low
-    Poly Assets'
-  packageVersion: 1.0
-  assetPath: Assets/Fries and Seagull/Ultimate Interior Pack/Models/Bottle 14.fbx
-  uploadId: 751214

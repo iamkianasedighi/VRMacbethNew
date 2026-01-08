@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6625026667230865679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3080374335767532310}
+  - component: {fileID: 1702313446607947682}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3080374335767532310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6625026667230865679}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1702313446607947682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6625026667230865679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bb1aefe7a5e273469b8123f1ea03380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToSpawn:
+  - {fileID: 919132149155446097, guid: 7f208d9e62488514dacd973320c9b1a1, type: 3}
+  - {fileID: 919132149155446097, guid: 04d6d6a9645baa6498d1a7c97b09b693, type: 3}
+  - {fileID: 919132149155446097, guid: 80e5b05d604eb6947abf0c09ca87df92, type: 3}
+  - {fileID: 919132149155446097, guid: 08eb5de94aaffc64fb46d45010d2c204, type: 3}
+  - {fileID: 919132149155446097, guid: 353a89b3350f94c48b49b599932d6783, type: 3}
+  - {fileID: 4933017669820779833, guid: a6354b6029b412642bdad8ffda270767, type: 3}
+  - {fileID: 919132149155446097, guid: c9571b2a79df9d54db14cd177eb77102, type: 3}
+  - {fileID: 919132149155446097, guid: a094fd215116d4f43a58f7e625094812, type: 3}
+  - {fileID: 919132149155446097, guid: c1ca62329f77cf4488b6ee78d3e4cd97, type: 3}
+  - {fileID: 624112423727515582, guid: ab5e47ededed75e4fab979cfaec73562, type: 3}
+  - {fileID: 1832602797320986, guid: 31e12bd7837458a43bf82f9c1d1095a3, type: 3}
+  - {fileID: 1169506447384916, guid: e572dd11dee7eb14794803f02e8d0714, type: 3}
+  - {fileID: 1846615912838142, guid: 15bfbcc4eeeaf4f4582750d6256a3784, type: 3}
+  - {fileID: 1436880191770956, guid: 88bfccd9eee1155428a68a2c95b9936f, type: 3}
+  - {fileID: 1348210696840410, guid: 1507ef0449cfd7240a2ed810bdd89e1e, type: 3}
+  - {fileID: 1491258262223948, guid: 5825969c21b9d514889772d976783631, type: 3}
+  spawnCount: 10
+  areaSize: {x: 50, y: 1, z: 30}
