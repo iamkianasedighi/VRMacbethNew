@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Our_Lobby_Player
+  - SharedCat
   layers:
   - Default
   - TransparentFX
