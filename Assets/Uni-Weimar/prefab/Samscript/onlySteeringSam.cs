@@ -16,10 +16,7 @@ namespace VRSYS.Core.Navigation
         public bool ownerOnly = true;
 
         [Header("Input Actions (Vector2)")]
-        [Tooltip("LEFT stick Vector2 action (bind ONLY LeftHand primary2DAxis).")]
         public InputActionProperty moveAction;
-
-        [Tooltip("RIGHT stick Vector2 action (bind ONLY RightHand primary2DAxis).")]
         public InputActionProperty turnAction;
 
         [Header("Steering")]
@@ -35,6 +32,10 @@ namespace VRSYS.Core.Navigation
         [Range(0, 360)] public float continuousRotationSpeed = 180f;
         [Range(0, 180)] public float snapRotationAmount = 30f;
 
+        [Header("CharacterController")]
+        public bool useGravity = true;
+        public float gravity = -9.81f;
+
         private NetworkObject netObj;
         private bool initialized = false;
 
@@ -42,6 +43,9 @@ namespace VRSYS.Core.Navigation
         private Transform head;
         private Transform leftHand;
         private Transform rightHand;
+
+        private CharacterController cc;
+        private Vector3 verticalVelocity;
 
         private const float moveDeadzone = 0.1f;
         private const float snapThreshold = 0.9f;
@@ -108,11 +112,20 @@ namespace VRSYS.Core.Navigation
             if (rotationTarget == null) rotationTarget = rigRoot;
             if (rotationReference == null) rotationReference = head;
 
+            // IMPORTANT: CharacterController must be on the same object as steeringTarget (rigRoot).
+            cc = steeringTarget.GetComponent<CharacterController>();
+            if (cc == null)
+            {
+                ExtendedLogger.LogError(GetType().Name,
+                    "No CharacterController found on steeringTarget. Add a CharacterController to the rig root (the object being moved).", this);
+                // We can still run, but collisions will be bypassed if we fall back to position +=
+            }
+
             initialized = true;
         }
 
         private Transform ForwardIndicator =>
-            steeringDirection == SteeringDirection.Head ? head : leftHand; // steering uses LEFT hand reference
+            steeringDirection == SteeringDirection.Head ? head : leftHand;
 
         private Vector3 ForwardDirection
         {
@@ -129,12 +142,47 @@ namespace VRSYS.Core.Navigation
             if (moveAction.action == null) return;
 
             Vector2 input = moveAction.action.ReadValue<Vector2>();
-            if (input.sqrMagnitude < moveDeadzone * moveDeadzone) return;
+            if (input.sqrMagnitude < moveDeadzone * moveDeadzone)
+            {
+                // still apply gravity even when not moving
+                ApplyGravityAndMove(Vector3.zero);
+                return;
+            }
 
             Vector3 moveDir = StickToWorldDirection(input);
-            float scaleFactor = steeringTarget.localScale.x;
 
-            steeringTarget.position += moveDir * (steeringSpeed * input.magnitude * Time.deltaTime) * scaleFactor;
+            float scaleFactor = steeringTarget.localScale.x;
+            Vector3 horizontal = moveDir * (steeringSpeed * input.magnitude * scaleFactor);
+
+            ApplyGravityAndMove(horizontal);
+        }
+
+        private void ApplyGravityAndMove(Vector3 horizontalVelocity)
+        {
+            float dt = Time.deltaTime;
+
+            if (cc != null)
+            {
+                if (useGravity)
+                {
+                    if (cc.isGrounded && verticalVelocity.y < 0f)
+                        verticalVelocity.y = -1f; // small stick-to-ground
+
+                    verticalVelocity.y += gravity * dt;
+                }
+                else
+                {
+                    verticalVelocity = Vector3.zero;
+                }
+
+                Vector3 motion = (horizontalVelocity + verticalVelocity) * dt;
+                cc.Move(motion);
+            }
+            else
+            {
+                // Fallback (NOT recommended): will still clip through terrain
+                steeringTarget.position += horizontalVelocity * dt;
+            }
         }
 
         private Vector3 StickToWorldDirection(Vector2 input)

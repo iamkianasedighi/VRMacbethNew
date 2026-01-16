@@ -3283,6 +3283,7 @@ GameObject:
   - component: {fileID: 7520657332332695646}
   - component: {fileID: 6705111252824095387}
   - component: {fileID: -2057687507425919518}
+  - component: {fileID: 3626226844351523169}
   m_Layer: 0
   m_Name: mile2HMDUserPrefab
   m_TagString: Untagged
@@ -3707,6 +3708,8 @@ MonoBehaviour:
   rotationMode: 0
   continuousRotationSpeed: 180
   snapRotationAmount: 30
+  useGravity: 1
+  gravity: -9.81
 --- !u!114 &-2057687507425919518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3775,6 +3778,31 @@ MonoBehaviour:
   continuousRotationSpeed: 180
   snapRotationAmount: 30
   enableDirectionFlip: 0
+--- !u!143 &3626226844351523169
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7216047633976425198}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1.5
+  m_Radius: 0.4
+  m_SlopeLimit: 180
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.03
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: -0.34, z: 0}
 --- !u!1 &7216047634103647853
 GameObject:
   m_ObjectHideFlags: 0
