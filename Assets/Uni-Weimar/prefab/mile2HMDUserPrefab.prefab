@@ -3698,13 +3698,13 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  steeringTarget: {fileID: 0}
-  steeringDirection: 1
+    m_Reference: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  steeringTarget: {fileID: 7216047633976425185}
+  steeringDirection: 0
   steeringSpeed: 3
   verticalSteering: 0
-  rotationTarget: {fileID: 0}
-  rotationReference: {fileID: 0}
+  rotationTarget: {fileID: 7216047633976425185}
+  rotationReference: {fileID: 7216047633375872280}
   rotationMode: 0
   continuousRotationSpeed: 180
   snapRotationAmount: 30
