@@ -1,0 +1,163 @@
+{
+    "version": 1,
+    "name": "VR Lab Class Input Actions",
+    "maps": [
+        {
+            "name": "Navigation",
+            "id": "c92e7243-89d8-4f78-8a5c-24d41788b571",
+            "actions": [
+                {
+                    "name": "Steering-LeftHand",
+                    "type": "Value",
+                    "id": "4f353134-246d-4e29-8519-038638da452c",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Steering-RightHand",
+                    "type": "Value",
+                    "id": "2670ee83-f0bb-495f-80b6-9a1847cd80b2",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Teleport-LeftHand",
+                    "type": "Value",
+                    "id": "9f4f7d23-2ef9-4b78-b8c1-2f4980ae787e",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Teleport-RightHand",
+                    "type": "Value",
+                    "id": "a2d21213-6541-49ac-a163-696db080d3b2",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "FoV Restriction Toggle",
+                    "type": "Button",
+                    "id": "37b0d541-b991-4be7-a4bd-f90d2277cdba",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9f8eb547-7465-46f6-b2b8-11154727a752",
+                    "path": "<XRController>{LeftHand}/{Trigger}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Steering-LeftHand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47edabab-66b5-4b8f-a07d-4171a67126d1",
+                    "path": "<XRController>{RightHand}/{Trigger}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Steering-RightHand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bf93c0e9-9a06-45d5-bd12-3b13c6e64aee",
+                    "path": "<XRController>{RightHand}/{Trigger}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Teleport-RightHand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7c8cde2e-030f-4741-929f-7bbce9c17020",
+                    "path": "<XRController>{LeftHand}/{Trigger}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Teleport-LeftHand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db914833-8c74-4da2-8968-9d79052530c6",
+                    "path": "<XRController>{RightHand}/thumbstickClicked",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FoV Restriction Toggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Manipulation",
+            "id": "c70f672f-be79-4a36-92cb-a9e344c8acd9",
+            "actions": [
+                {
+                    "name": "Grab Right",
+                    "type": "Button",
+                    "id": "7f9ab028-c7ca-4676-80f5-124a522b503b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Grab Left",
+                    "type": "Button",
+                    "id": "9d2e8f33-1532-48f6-a6ae-8da0237746c7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "43967419-9bbd-41c4-806b-d8af2072c791",
+                    "path": "<XRController>{RightHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Grab Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "92352239-342a-4bd9-95c1-58faab286801",
+                    "path": "<XRController>{LeftHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Grab Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

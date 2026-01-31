@@ -17,8 +17,11 @@ EditorBuildSettings:
       Setup/VRSYS-LocalNetwork.unity
     guid: 42c214265124066428ac33c4370b1827
   - enabled: 1
-    path: Assets/Uni-Weimar/scene/VRSYS-SingleScene.unity
+    path: Assets/Uni-Weimar/scene/Our project scene.unity
     guid: 2de228ed1f2d68d4d875249d359ea792
+  - enabled: 1
+    path: Assets/VR Lab Class/Scene/VR-LabClass-DemoScene.unity
+    guid: cf41b318c090151428556064c5871c6a
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 1e92b0ec77de55342920807a713ce6ef, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
