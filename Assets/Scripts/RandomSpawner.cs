@@ -1,45 +1,86 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class RandomSpawner : MonoBehaviour
+public class RandomSpawner : NetworkBehaviour
 {
-    [Header("List of prefabs you want to spawn")]
+    [Header("Prefabs (Network Prefab ASSETS only)")]
     public GameObject[] objectsToSpawn;
 
-    [Header("How many objects to spawn")]
-    public int spawnCount = 5;
+    [Header("Spawn Count")]
+    public int spawnCount = 10;
 
-    [Header("Random area size")]
-    public Vector3 areaSize = new Vector3(10, 1, 10);
+    [Header("Spawn Area (XZ)")]
+    public Vector2 areaSize = new Vector2(20f, 20f);
 
-    void Start()
+    [Header("Ground Placement")]
+    public LayerMask groundMask;
+
+    [Tooltip("Raycast starts this high above the spawn point")]
+    public float rayStartHeight = 30f;     // ⬆ HIGHER
+
+    [Tooltip("How far down the ray searches")]
+    public float rayDistance = 100f;        // ⬆ LONGER
+
+    [Tooltip("Lift above ground after hit")]
+    public float groundOffset = 2.0f;       // ⬆ SAFER
+
+    [Tooltip("Fallback height if no ground is found")]
+    public float fallbackHeight = 2.0f;     // ⬆ SAFER
+
+    public override void OnNetworkSpawn()
     {
-        SpawnRandomObjects();
+        if (!IsServer) return;
+        SpawnObjects();
     }
 
-    void SpawnRandomObjects()
+    private void SpawnObjects()
     {
         for (int i = 0; i < spawnCount; i++)
         {
-            // Choose a random prefab
-            GameObject prefab = objectsToSpawn[Random.Range(0, objectsToSpawn.Length)];
+            var prefab = objectsToSpawn[Random.Range(0, objectsToSpawn.Length)];
+            if (prefab == null) continue;
 
-            // Create random position
-            Vector3 randomPosition = transform.position +
-                                     new Vector3(
-                                         Random.Range(-areaSize.x / 2, areaSize.x / 2),
-                                         0,
-                                         Random.Range(-areaSize.z / 2, areaSize.z / 2)
-                                     );
+            // Random XZ position
+            Vector3 spawnPos = transform.position +
+                               new Vector3(
+                                   Random.Range(-areaSize.x * 0.5f, areaSize.x * 0.5f),
+                                   0f,
+                                   Random.Range(-areaSize.y * 0.5f, areaSize.y * 0.5f)
+                               );
 
-            // Spawn
-            Instantiate(prefab, randomPosition, Quaternion.identity);
+            // Raycast downward to find ground
+            Vector3 rayStart = spawnPos + Vector3.up * rayStartHeight;
+
+            if (Physics.Raycast(
+                rayStart,
+                Vector3.down,
+                out RaycastHit hit,
+                rayDistance,
+                groundMask,
+                QueryTriggerInteraction.Ignore))
+            {
+                spawnPos.y = hit.point.y + groundOffset;
+            }
+            else
+            {
+                // Absolute fallback
+                spawnPos.y = transform.position.y + fallbackHeight;
+            }
+
+            GameObject go = Instantiate(prefab, spawnPos, Quaternion.identity);
+
+            NetworkObject netObj = go.GetComponent<NetworkObject>();
+            if (netObj != null)
+                netObj.Spawn();
         }
     }
 
-    // draw spawn area in editor
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(transform.position, areaSize);
+        Gizmos.DrawWireCube(
+            transform.position,
+            new Vector3(areaSize.x, 0.1f, areaSize.y)
+        );
     }
 }
