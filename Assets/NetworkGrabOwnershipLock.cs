@@ -132,7 +132,7 @@ public class NetworkGrabOwnershipLock : NetworkBehaviour
             netObj.ChangeOwnership(NetworkManager.ServerClientId);
     }
 
-    [ClientRpc]
+    [ClientRpc] //this is the old version of ClientRpc, now use Rpc(SendTo.xxx)
     private void DenyGrabClientRpc(ulong deniedClientId)
     {
         if (NetworkManager.LocalClientId != deniedClientId) return;

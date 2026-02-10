@@ -96,6 +96,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a180a88ac81c58648ac77540901b2793, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3583678308196733997}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a180a88ac81c58648ac77540901b2793, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2161805934896525822}
     - targetCorrespondingSourceObject: {fileID: -6781558667724411288, guid: a180a88ac81c58648ac77540901b2793, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5271982232551414789}
@@ -336,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 0
+  GlobalObjectIdHash: 644140042
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -408,3 +411,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  debug_isSpawned: 0
+  debug_isServer: 0
+  debug_isHost: 0
+  debug_isOwner: 0
+  debug_localClientId: 0
+  debug_isHeld: 0
+  debug_holderClientId: 0
+  debug_isHeldBySomeoneElse: 0
+  debug_canLocalPlayerGrab: 0
+  debug_xrIsSelected: 0
+  debug_firstInteractorName: 
+--- !u!114 &2161805934896525822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3534739113951589075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7a695280b6583741890d98a420d689a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  points: 10
+  scoredAlready: 0
