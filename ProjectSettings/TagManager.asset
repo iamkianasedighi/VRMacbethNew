@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Our_Lobby_Player
   - SharedCat
+  - OrbitTree
   layers:
   - Default
   - TransparentFX

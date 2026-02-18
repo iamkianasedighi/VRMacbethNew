@@ -134,14 +134,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   tree: {fileID: 0}
+  treeTag: OrbitTree
+  treeNameFallback: Tree
   orbitSpeed: 0.2
   orbitRadius: 3
-  heightOffset: 0
   followRadius: 5
   followSpeed: 0.5
   stopDistance: 1.2
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  groundRayHeight: 5
+  groundSnapOffset: 0
   walkStateName: walk
   sitStateName: Sit
+  scanInterval: 0.1
+  verboseLogs: 0
 --- !u!114 &8159970648576135671
 MonoBehaviour:
   m_ObjectHideFlags: 0

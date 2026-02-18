@@ -2269,6 +2269,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Generic_Tree_04
       objectReference: {fileID: 0}
+    - target: {fileID: 1597992115380844, guid: 29e11e161bb34c049bd1c06f54c7e364, type: 3}
+      propertyPath: m_TagString
+      value: OrbitTree
+      objectReference: {fileID: 0}
     - target: {fileID: 4991348106896128, guid: 29e11e161bb34c049bd1c06f54c7e364, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

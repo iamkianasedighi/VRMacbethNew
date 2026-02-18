@@ -7,12 +7,18 @@ using Unity.Netcode;
 public class NetworkCatWalk : NetworkBehaviour
 {
     [Header("References")]
+    [Tooltip("Optional. If null at runtime, the server will auto-find by Tree Tag/Name below.")]
     public Transform tree;
+
+    [Tooltip("If tree is null, server tries GameObject.FindWithTag() using this tag.")]
+    public string treeTag = "Tree";
+
+    [Tooltip("Fallback: if tag search fails, server tries GameObject.Find() using this name.")]
+    public string treeNameFallback = "Tree";
 
     [Header("Orbit Settings")]
     public float orbitSpeed = 1f;
     public float orbitRadius = 3f;
-    public float heightOffset = 0f;
 
     [Header("Follow Settings")]
     public float followRadius = 5f;
@@ -20,6 +26,16 @@ public class NetworkCatWalk : NetworkBehaviour
 
     [Tooltip("How close the cat is allowed to get to the player (petting distance).")]
     public float stopDistance = 1.2f;
+
+    [Header("Grounding (Fixes floating)")]
+    [Tooltip("Only these layers count as ground. Set this to your Ground/Terrain layer(s).")]
+    public LayerMask groundMask = ~0;
+
+    [Tooltip("Ray starts this far above cat position.")]
+    public float groundRayHeight = 5f;
+
+    [Tooltip("Extra offset above hit point (use if cat pivot is below feet).")]
+    public float groundSnapOffset = 0f;
 
     [Header("Animation")]
     public string walkStateName = "walk";
@@ -48,6 +64,29 @@ public class NetworkCatWalk : NetworkBehaviour
         anim = GetComponent<Animator>();
     }
 
+    public override void OnNetworkSpawn()
+    {
+        // IMPORTANT: on a shared NPC, the SERVER drives movement.
+        if (!IsServer) return;
+
+        // Fix #1: scene reference often missing on server for network-spawned prefab
+        ResolveTreeReference();
+
+        // Optional: start angle based on current position for nicer orbit
+        if (tree != null)
+        {
+            Vector3 flat = transform.position - tree.position;
+            flat.y = 0f;
+            if (flat.sqrMagnitude > 0.0001f)
+            {
+                angle = Mathf.Atan2(flat.z, flat.x);
+            }
+        }
+
+        if (verboseLogs)
+            Debug.Log($"[CAT][SERVER] Spawned. tree={(tree ? tree.name : "NULL")}");
+    }
+
     void Update()
     {
         // Shared cat: server decides and moves. Clients receive via NetworkTransform.
@@ -55,6 +94,10 @@ public class NetworkCatWalk : NetworkBehaviour
 
         if (NetworkManager.Singleton == null || !NetworkManager.Singleton.IsListening)
             return;
+
+        // If tree reference was missing at spawn (scene load order), try occasionally
+        if (tree == null && Time.frameCount % 60 == 0)
+            ResolveTreeReference();
 
         scanTimer -= Time.deltaTime;
         if (scanTimer <= 0f)
@@ -65,25 +108,47 @@ public class NetworkCatWalk : NetworkBehaviour
 
             if (verboseLogs && Time.frameCount % 60 == 0)
             {
-                Debug.Log($"[CAT][SERVER] targetClientId={(currentTargetClientId.HasValue ? currentTargetClientId.Value.ToString() : "NONE")}, inRange={inRangeSince.Count}");
+                Debug.Log($"[CAT][SERVER] target={(currentTargetClientId.HasValue ? currentTargetClientId.Value.ToString() : "NONE")}, " +
+                          $"inRange={inRangeSince.Count}, tree={(tree ? tree.name : "NULL")}");
             }
         }
 
         Transform target = GetTargetTransform(currentTargetClientId);
 
         if (target != null)
-        {
             FollowTarget(target);
-        }
         else if (tree != null)
-        {
             OrbitTree();
+        else
+        {
+            // no tree + no target => just stay grounded
+            SnapToGround();
+            PlayIfNotAlready(sitStateName);
         }
-        // else: no tree + no target => stays still
     }
 
     // -------------------------------------------------------
-    // FOLLOW TARGET RESOLUTION (UPDATED LOGIC)
+    // Tree resolving (server-side)
+    // -------------------------------------------------------
+    void ResolveTreeReference()
+    {
+        if (tree != null) return;
+
+        if (!string.IsNullOrEmpty(treeTag))
+        {
+            var byTag = GameObject.FindWithTag(treeTag);
+            if (byTag != null) tree = byTag.transform;
+        }
+
+        if (tree == null && !string.IsNullOrEmpty(treeNameFallback))
+        {
+            var byName = GameObject.Find(treeNameFallback);
+            if (byName != null) tree = byName.transform;
+        }
+    }
+
+    // -------------------------------------------------------
+    // FOLLOW TARGET RESOLUTION
     // Uses CatFollowTargetRef.target if present, else fallback
     // -------------------------------------------------------
     Transform GetFollowTransformFromPlayer(NetworkObject playerObj)
@@ -139,7 +204,14 @@ public class NetworkCatWalk : NetworkBehaviour
         {
             ulong clientId = kvp.Key;
             var playerObj = kvp.Value?.PlayerObject;
-            if (playerObj == null) continue;
+
+            // If this logs NULL for everyone, your players are not set as PlayerObject
+            if (playerObj == null)
+            {
+                if (verboseLogs && Time.frameCount % 120 == 0)
+                    Debug.Log($"[CAT][SERVER] Client {clientId} PlayerObject is NULL. Cat cannot track them via ConnectedClients.PlayerObject.");
+                continue;
+            }
 
             Transform followT = GetFollowTransformFromPlayer(playerObj);
             if (followT == null) continue;
@@ -154,21 +226,14 @@ public class NetworkCatWalk : NetworkBehaviour
 
             if (isInRange && !alreadyTracked)
             {
-                // Record first entry time
                 inRangeSince[clientId] = nm.ServerTime.Time;
-
-                if (verboseLogs)
-                    Debug.Log($"[CAT][SERVER] Client {clientId} ENTERED range (count={inRangeSince.Count})");
+                if (verboseLogs) Debug.Log($"[CAT][SERVER] Client {clientId} ENTER range (count={inRangeSince.Count})");
             }
             else if (!isInRange && alreadyTracked)
             {
-                // Remove when leaving range
                 inRangeSince.Remove(clientId);
+                if (verboseLogs) Debug.Log($"[CAT][SERVER] Client {clientId} LEAVE range (count={inRangeSince.Count})");
 
-                if (verboseLogs)
-                    Debug.Log($"[CAT][SERVER] Client {clientId} LEFT range (count={inRangeSince.Count})");
-
-                // If current target left, clear so we can choose next
                 if (currentTargetClientId.HasValue && currentTargetClientId.Value == clientId)
                     currentTargetClientId = null;
             }
@@ -216,16 +281,17 @@ public class NetworkCatWalk : NetworkBehaviour
     }
 
     // -------------------------------------------------------
-    // Follow behavior
+    // Follow behavior (server authoritative)
     // -------------------------------------------------------
     void FollowTarget(Transform target)
     {
         Vector3 catPos = transform.position;
+
+        // Move only in XZ
         Vector3 targetPos = new Vector3(target.position.x, catPos.y, target.position.z);
-
         Vector3 to = targetPos - catPos;
-        float dist = to.magnitude;
 
+        float dist = to.magnitude;
         Vector3 dir = (dist > 0.001f) ? (to / dist) : transform.forward;
 
         if (dist > stopDistance)
@@ -238,15 +304,19 @@ public class NetworkCatWalk : NetworkBehaviour
             PlayIfNotAlready(sitStateName);
         }
 
+        // Rotate toward target
         if (dir.sqrMagnitude > 0.0001f)
         {
             Quaternion lookRot = Quaternion.LookRotation(dir);
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * 5f);
         }
+
+        // Fix #2: always snap to ground
+        SnapToGround();
     }
 
     // -------------------------------------------------------
-    // Orbit behavior
+    // Orbit behavior (server authoritative)
     // -------------------------------------------------------
     void OrbitTree()
     {
@@ -256,10 +326,12 @@ public class NetworkCatWalk : NetworkBehaviour
 
         float x = tree.position.x + Mathf.Cos(angle) * orbitRadius;
         float z = tree.position.z + Mathf.Sin(angle) * orbitRadius;
-        float y = tree.position.y + heightOffset;
 
-        transform.position = new Vector3(x, y, z);
+        // Set XZ, then snap Y to ground
+        Vector3 p = new Vector3(x, transform.position.y, z);
+        transform.position = p;
 
+        // Face tangent direction
         Vector3 tangent = new Vector3(-Mathf.Sin(angle), 0f, Mathf.Cos(angle));
         if (tangent.sqrMagnitude > 0.0001f)
         {
@@ -268,6 +340,24 @@ public class NetworkCatWalk : NetworkBehaviour
         }
 
         PlayIfNotAlready(walkStateName);
+
+        // Fix #2: always snap to ground
+        SnapToGround();
+    }
+
+    // -------------------------------------------------------
+    // Ground snapping utility
+    // -------------------------------------------------------
+    void SnapToGround()
+    {
+        Vector3 pos = transform.position;
+        Vector3 rayStart = pos + Vector3.up * groundRayHeight;
+
+        if (Physics.Raycast(rayStart, Vector3.down, out RaycastHit hit, groundRayHeight * 10f, groundMask, QueryTriggerInteraction.Ignore))
+        {
+            pos.y = hit.point.y + groundSnapOffset;
+            transform.position = pos;
+        }
     }
 
     void PlayIfNotAlready(string stateName)
