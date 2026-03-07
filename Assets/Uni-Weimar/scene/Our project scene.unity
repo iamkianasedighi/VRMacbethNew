@@ -8861,7 +8861,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1702313446607947682, guid: d9dbaedd19cdc2d47b72d266efaa6f35, type: 3}
       propertyPath: areaSize.x
-      value: 80
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702313446607947682, guid: d9dbaedd19cdc2d47b72d266efaa6f35, type: 3}
+      propertyPath: areaSize.y
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 1702313446607947682, guid: d9dbaedd19cdc2d47b72d266efaa6f35, type: 3}
       propertyPath: areaSize.z
@@ -8924,8 +8928,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3086531628171259544, guid: 19aa76468ffeb264dbb2965f4958c58f, type: 3}
     - target: {fileID: 3080374335767532310, guid: d9dbaedd19cdc2d47b72d266efaa6f35, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 30054.283
+      objectReference: {fileID: 0}
+    - target: {fileID: 3080374335767532310, guid: d9dbaedd19cdc2d47b72d266efaa6f35, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 300.54282
+      objectReference: {fileID: 0}
+    - target: {fileID: 3080374335767532310, guid: d9dbaedd19cdc2d47b72d266efaa6f35, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 39072.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 3080374335767532310, guid: d9dbaedd19cdc2d47b72d266efaa6f35, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.1
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 3080374335767532310, guid: d9dbaedd19cdc2d47b72d266efaa6f35, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8933,7 +8949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3080374335767532310, guid: d9dbaedd19cdc2d47b72d266efaa6f35, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.7
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3080374335767532310, guid: d9dbaedd19cdc2d47b72d266efaa6f35, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8961,6 +8977,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3080374335767532310, guid: d9dbaedd19cdc2d47b72d266efaa6f35, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3080374335767532310, guid: d9dbaedd19cdc2d47b72d266efaa6f35, type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6625026667230865679, guid: d9dbaedd19cdc2d47b72d266efaa6f35, type: 3}
@@ -13744,7 +13764,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1924822785
 MonoBehaviour:
   m_ObjectHideFlags: 0

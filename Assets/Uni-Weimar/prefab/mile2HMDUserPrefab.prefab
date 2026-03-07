@@ -6067,6 +6067,7 @@ GameObject:
   - component: {fileID: 4038245099599912760}
   - component: {fileID: 3413254827370488936}
   - component: {fileID: 5859476283269456884}
+  - component: {fileID: 3676173494534268257}
   m_Layer: 0
   m_Name: mile2HMDUserPrefab
   m_TagString: Untagged
@@ -6124,7 +6125,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7216047633976425198}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0cb9aa70a22847b5925ee5f067c10a9, type: 3}
   m_Name: 
@@ -6701,6 +6702,20 @@ MonoBehaviour:
   bestText: {fileID: 3603865051041202739}
   newHighScoreText: {fileID: 895923458011411176}
   newGameButtonGO: {fileID: 6034621278518771891}
+--- !u!114 &3676173494534268257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7216047633976425198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511b09050e334844da17a8dc16110f88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  sceneXROrigin: {fileID: 0}
 --- !u!1 &7216047634103647853
 GameObject:
   m_ObjectHideFlags: 0
