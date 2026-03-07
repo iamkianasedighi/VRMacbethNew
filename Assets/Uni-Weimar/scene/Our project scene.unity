@@ -1710,7 +1710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  roundSeconds: 30
+  roundSeconds: 180
   timeText: {fileID: 0}
   scoreText: {fileID: 0}
   endText: {fileID: 0}
