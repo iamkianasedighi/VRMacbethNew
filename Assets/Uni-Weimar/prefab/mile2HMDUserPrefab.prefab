@@ -3692,7 +3692,7 @@ MonoBehaviour:
   m_HapticHoverCancelIntensity: 0
   m_HapticHoverCancelDuration: 0
   m_AllowHoverHapticsWhileSelecting: 1
-  m_LineType: 0
+  m_LineType: 1
   m_BlendVisualLinePoints: 1
   m_MaxRaycastDistance: 30
   m_RayOriginTransform: {fileID: 0}
@@ -3720,7 +3720,7 @@ MonoBehaviour:
   m_HoverTimeToSelect: 0.5
   m_AutoDeselect: 0
   m_TimeToAutoDeselect: 3
-  m_EnableUIInteraction: 1
+  m_EnableUIInteraction: 0
   m_BlockInteractionsWithScreenSpaceUI: 0
   m_BlockUIOnInteractableSelection: 1
   m_ManipulateAttachTransform: 1
@@ -6059,7 +6059,6 @@ GameObject:
   - component: {fileID: 4713100398976329105}
   - component: {fileID: 7520657332332695646}
   - component: {fileID: 6705111252824095387}
-  - component: {fileID: -2057687507425919518}
   - component: {fileID: 3626226844351523169}
   - component: {fileID: 7931496363768819933}
   - component: {fileID: 3924929485685674346}
@@ -6379,13 +6378,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7216047633976425198}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13bcb1debe49cb043ab5f83e7b537189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   leftThumbstick:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
       m_Name: Left Thumbstick
       m_Type: 0
@@ -6395,7 +6394,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: 495576313390803699, guid: 08e4abb0a639b5549a9482838b58d650, type: 3}
   rightThumbstick:
     m_UseReference: 0
     m_Action:
@@ -6409,18 +6408,18 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 0}
   navigationHand: 0
-  navigationType: 0
+  navigationType: 1
   steeringTarget: {fileID: 0}
   steeringDirection: 1
   steeringSpeed: 2.984821
   verticalSteering: 0
-  teleportationTarget: {fileID: 0}
-  ray: {fileID: 0}
-  previewAvatar: {fileID: 0}
+  teleportationTarget: {fileID: 7216047633976425185}
+  ray: {fileID: 8163903276498963859}
+  previewAvatar: {fileID: 4140303437583358541}
   maxRayLength: 30
   teleportLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   rotationTarget: {fileID: 0}
   rotationReference: {fileID: 0}
   rotationMode: 0
@@ -6495,74 +6494,6 @@ MonoBehaviour:
   snapRotationAmount: 30
   useGravity: 1
   gravity: -9.81
---- !u!114 &-2057687507425919518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7216047633976425198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdf4b64566072f1459a6de0a950f86c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerOnly: 1
-  leftThumbstick:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Left Thumbstick
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: f87bb18d-9094-49cb-92eb-8863913bfa17
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  rightThumbstick:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Right Thumbstick
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 79569d91-fc48-46a3-a6fe-f1bdd2fe24d0
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -7471211009204490832, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  toggleNavigationAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Toggle Navigation
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: f198e392-cef8-47ed-8f71-13cd425f7ff9
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  navigationHand: 0
-  navigationType: 1
-  steeringTarget: {fileID: 0}
-  steeringDirection: 1
-  steeringSpeed: 3.5
-  verticalSteering: 0
-  teleportationTarget: {fileID: 0}
-  ray: {fileID: 0}
-  previewAvatar: {fileID: 0}
-  maxRayLength: 30
-  teleportLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  rotationTarget: {fileID: 0}
-  rotationReference: {fileID: 0}
-  rotationMode: 0
-  continuousRotationSpeed: 180
-  snapRotationAmount: 30
-  enableDirectionFlip: 0
 --- !u!143 &3626226844351523169
 CharacterController:
   m_ObjectHideFlags: 0
@@ -7809,6 +7740,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4663052315973873640, guid: 52b6a662c7eca814781f763c3e77f427, type: 3}
   m_PrefabInstance: {fileID: 5938416299605274569}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4140303437583358541 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7718094589686494596, guid: 52b6a662c7eca814781f763c3e77f427, type: 3}
+  m_PrefabInstance: {fileID: 5938416299605274569}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c6d9f2da7ff317428f90d8f188d831d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6992089178404839462
 PrefabInstance:
   m_ObjectHideFlags: 0

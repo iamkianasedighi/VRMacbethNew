@@ -28,7 +28,7 @@
                     "name": "Teleport-LeftHand",
                     "type": "Value",
                     "id": "9f4f7d23-2ef9-4b78-b8c1-2f4980ae787e",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -89,7 +89,7 @@
                 {
                     "name": "",
                     "id": "7c8cde2e-030f-4741-929f-7bbce9c17020",
-                    "path": "<XRController>{LeftHand}/{Trigger}",
+                    "path": "<XRController>{LeftHand}/{Primary2DAxis}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
