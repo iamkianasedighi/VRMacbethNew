@@ -9,6 +9,10 @@ public class CatWalk : MonoBehaviour
     [Header("References")]
     public Transform tree;
 
+    [Header("Audio")]
+    public AudioSource catAudioSource;  // assign cat Audio Source here
+    public float meowTriggerDistance = 3f; // when player is this close, play meow once
+
     [Header("Orbit Settings")]
     public float orbitSpeed = 1f;
     public float orbitRadius = 3f;
@@ -23,10 +27,14 @@ public class CatWalk : MonoBehaviour
 
     private float angle = 0f;
     private Animator anim;
+    private bool hasMeowed = false;
 
     void Start()
     {
         anim = GetComponent<Animator>();
+
+        if (catAudioSource == null)
+            catAudioSource = GetComponent<AudioSource>();
     }
 
     Transform GetActiveCamera()
@@ -55,7 +63,7 @@ public class CatWalk : MonoBehaviour
         Vector3 playerPosFlat = new Vector3(playerHead.position.x, catPos.y, playerHead.position.z);
         float distanceToPlayer = Vector3.Distance(catPos, playerPosFlat);
 
-        // FOLLOW PLAYER (but stop at stopDistance)
+        // FOLLOW PLAYER (movement kept as your original logic)
         if (distanceToPlayer <= followRadius)
         {
             Vector3 toPlayer = (playerPosFlat - catPos);
@@ -78,6 +86,13 @@ public class CatWalk : MonoBehaviour
                     anim.Play("Sit");
             }
 
+            // Play meow once when player gets close enough
+            if (!hasMeowed && distanceToPlayer <= meowTriggerDistance && catAudioSource != null)
+            {
+                catAudioSource.Play();
+                hasMeowed = true;
+            }
+
             // Always face the player
             Quaternion lookRot = Quaternion.LookRotation(dir);
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * 5f);
@@ -85,7 +100,10 @@ public class CatWalk : MonoBehaviour
             return;
         }
 
-        // Otherwise ORBIT TREE
+        // Reset meow when player leaves follow area, so it can meow again next time
+        hasMeowed = false;
+
+        // Otherwise ORBIT TREE (kept as your original logic)
         if (anim == null || anim.GetCurrentAnimatorStateInfo(0).IsName("walk"))
         {
             angle += orbitSpeed * Time.deltaTime;

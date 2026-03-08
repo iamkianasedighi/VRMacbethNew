@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 05e4cff86858e6643b6f57642c0aaf0f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 05e4cff86858e6643b6f57642c0aaf0f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 05e4cff86858e6643b6f57642c0aaf0f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 05e4cff86858e6643b6f57642c0aaf0f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -392,6 +392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a695280b6583741890d98a420d689a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   type: 0
   points: 10
-  scoredAlready: 0
