@@ -96,6 +96,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4144b0222ec915941a8aaf40c8904dfb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1819023407118125761}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4144b0222ec915941a8aaf40c8904dfb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4868363889173176623}
   m_SourcePrefab: {fileID: 100100000, guid: 4144b0222ec915941a8aaf40c8904dfb, type: 3}
 --- !u!1 &4982349502590001407 stripped
 GameObject:
@@ -396,3 +399,20 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   type: 0
   points: 10
+--- !u!114 &4868363889173176623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4982349502590001407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkRigidbodyBaseExpanded: 0
+  UseRigidBodyForMotion: 1
+  AutoUpdateKinematicState: 1
+  AutoSetKinematicOnDespawn: 1
