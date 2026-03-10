@@ -290,14 +290,11 @@ namespace VRSYS.Core.Navigation
 
         private void ApplyTeleport()
         {
-            InputAction moveAction = navigationHand == HandType.Left
-                ? leftThumbstick.action
-                : rightThumbstick.action;
-
-            if (moveAction == null)
-                return;
-
-            float input = moveAction.ReadValue<Vector2>().y;
+            InputAction action = navigationHand == HandType.Left ? leftThumbstick.action : rightThumbstick.action;
+            
+            if (action == null) return;
+            
+            float input = action.ReadValue<Vector2>().y;
 
             if (input < activationThreshold)
             {
@@ -306,15 +303,11 @@ namespace VRSYS.Core.Navigation
                     PerformTeleport();
                     return;
                 }
-
+                
                 if (teleportState != TeleportState.Idle)
                 {
-                    if (ray != null)
-                        ray.enabled = false;
-
-                    if (previewAvatar != null)
-                        previewAvatar.Deactivate();
-
+                    if (ray != null) ray.enabled = false;
+                    if (previewAvatar != null) previewAvatar.Deactivate();
                     teleportState = TeleportState.Idle;
                 }
             }
@@ -325,15 +318,11 @@ namespace VRSYS.Core.Navigation
                     PerformTeleport();
                     return;
                 }
-
+                
                 if (teleportState != TeleportState.Aiming)
                 {
-                    if (ray != null)
-                        ray.enabled = true;
-
-                    if (previewAvatar != null)
-                        previewAvatar.ActivateIndicator();
-
+                    if (ray != null) ray.enabled = true;
+                    if (previewAvatar != null) previewAvatar.ActivateIndicator();
                     teleportState = TeleportState.Aiming;
                 }
 
@@ -343,15 +332,11 @@ namespace VRSYS.Core.Navigation
             {
                 if (teleportState != TeleportState.Locked)
                 {
-                    if (ray != null)
-                        ray.enabled = true;
-
-                    if (previewAvatar != null)
-                        previewAvatar.ActivateAvatar();
-
+                    if (ray != null) ray.enabled = true;
+                    if (previewAvatar != null) previewAvatar.ActivateAvatar();
                     teleportState = TeleportState.Locked;
                 }
-
+                
                 UpdateTeleportRay(input);
             }
         }
@@ -359,22 +344,24 @@ namespace VRSYS.Core.Navigation
         private void UpdateTeleportRay(float input)
         {
             Transform hand = navigationHand == HandType.Left ? leftHand : rightHand;
-
-            if (hand == null || ray == null)
-                return;
-
+            
+            if (hand == null || ray == null) return;
+            
             ray.SetPosition(0, hand.position);
-
+            
             if (Physics.Raycast(hand.position, hand.forward, out RaycastHit hit, maxRayLength, teleportLayerMask))
-            {
+            { 
                 ray.SetPosition(1, hit.point);
-
+                
                 if (previewAvatar != null)
                 {
                     if (teleportState == TeleportState.Aiming)
                         previewAvatar.UpdateIndicator(hit.point, input);
                     else if (teleportState == TeleportState.Locked)
-                        previewAvatar.UpdateAvatar(hit.point, head.localPosition.y);
+                    {
+                        float headHeightAboveRig = head.position.y - teleportationTarget.position.y;
+                        previewAvatar.UpdateAvatar(hit.point, headHeightAboveRig);
+                    }
                 }
             }
             else
@@ -385,31 +372,41 @@ namespace VRSYS.Core.Navigation
 
         private void PerformTeleport()
         {
-            if (previewAvatar == null || teleportationTarget == null || head == null)
-                return;
-
+            if (previewAvatar == null || teleportationTarget == null || head == null) return;
+            
             Transform target = previewAvatar.transform;
 
-            Vector3 currentHeadWorld = head.position;
-            Vector3 desiredHeadWorld = target.position;
+            // Calculate XZ movement from current head position to target, ignoring Y
+            Vector3 headPosFlat = head.position;
+            headPosFlat.y = teleportationTarget.position.y;
+            Vector3 movement = target.position - headPosFlat;
+            teleportationTarget.Translate(movement, Space.World);
 
-            Vector3 offset = desiredHeadWorld - currentHeadWorld;
-            offset.y = 0f;
-
-            teleportationTarget.position += offset;
-
+            // Rotate rig to match preview avatar direction
             float angle = Vector3.SignedAngle(head.forward, target.forward, Vector3.up);
             teleportationTarget.RotateAround(head.position, Vector3.up, angle);
 
-            previewAvatar.Deactivate();
+            // Ground check — prevent sinking into hills/terrain
+            float groundCheckDistance = 5f;
+            if (Physics.Raycast(teleportationTarget.position + Vector3.up * groundCheckDistance, 
+                                Vector3.down, out RaycastHit groundHit, 
+                                groundCheckDistance * 2f, teleportLayerMask))
+            {
+                // Snap rig Y to ground surface
+                teleportationTarget.position = new Vector3(
+                    teleportationTarget.position.x,
+                    groundHit.point.y,
+                    teleportationTarget.position.z
+                );
+            }
 
-            if (ray != null)
-                ray.enabled = false;
-
+            // Clean up
+            if (ray != null) ray.enabled = false;
+            if (previewAvatar != null) previewAvatar.Deactivate();
             teleportState = TeleportState.Idle;
         }
-
         #endregion
+
 
         #region Rotation
 

@@ -6608,7 +6608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04425e4a1fcd45e46a6acf1ade0ffaaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   floorLayers:
     serializedVersion: 2
     m_Bits: 128
@@ -6732,12 +6732,12 @@ MonoBehaviour:
   maxRayLength: 30
   teleportLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2147483649
   rotationTarget: {fileID: 0}
   rotationReference: {fileID: 0}
   rotationMode: 0
-  continuousRotationSpeed: 81
-  snapRotationAmount: 47
+  continuousRotationSpeed: 170
+  snapRotationAmount: 61
   enableDirectionFlip: 0
 --- !u!1 &7216047634103647853
 GameObject:
