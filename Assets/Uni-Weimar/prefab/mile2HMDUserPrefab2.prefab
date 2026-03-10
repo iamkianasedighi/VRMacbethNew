@@ -6068,9 +6068,8 @@ GameObject:
   - component: {fileID: 3413254827370488936}
   - component: {fileID: 5859476283269456884}
   - component: {fileID: 3676173494534268257}
-  - component: {fileID: -5648398523464838618}
   m_Layer: 0
-  m_Name: mile2HMDUserPrefab
+  m_Name: mile2HMDUserPrefab2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6297,7 +6296,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7216047633976425198}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3384a97d31262c47b1d8da45d82f107, type: 3}
   m_Name: 
@@ -6379,7 +6378,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7216047633976425198}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13bcb1debe49cb043ab5f83e7b537189, type: 3}
   m_Name: 
@@ -6416,7 +6415,7 @@ MonoBehaviour:
   verticalSteering: 0
   teleportationTarget: {fileID: 7216047633976425185}
   ray: {fileID: 8163903276498963859}
-  previewAvatar: {fileID: 4140303437583358541}
+  previewAvatar: {fileID: 6083109284315096634}
   maxRayLength: 30
   teleportLayerMask:
     serializedVersion: 2
@@ -6454,7 +6453,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7216047633976425198}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04f920ce9b5a4a444abe0fdb44457035, type: 3}
   m_Name: 
@@ -6648,97 +6647,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
---- !u!114 &-5648398523464838618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7216047633976425198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bec239e7631e90e4484850f43b05af30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftThumbstick:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Left Thumbstick
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 6ad3f908-2dc7-43fa-b7e6-fdf38cba81a0
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: 52c4b348-c4c7-4d8d-b56f-7e710772f0b9
-        m_Path: <XRController>{LeftHand}/{Primary2DAxis}
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Left Thumbstick
-        m_Flags: 0
-      m_Flags: 0
-    m_Reference: {fileID: 495576313390803699, guid: 08e4abb0a639b5549a9482838b58d650, type: 3}
-  rightThumbstick:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Right Thumbstick
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 9afe0f20-b6b5-482b-9aad-cf6509730141
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: 9e3a34d6-2a58-4647-87ce-4abe229cd070
-        m_Path: <XRController>{RightHand}/{Primary2DAxis}
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Right Thumbstick
-        m_Flags: 0
-      m_Flags: 0
-    m_Reference: {fileID: -306789452333931800, guid: 08e4abb0a639b5549a9482838b58d650, type: 3}
-  switchModeAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Switch Mode
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 17bd98f3-20eb-44fc-96f1-420ba98b9dde
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: 386c0865-cc4c-47e4-8f54-3cc00cef7256
-        m_Path: <XRInputV1::Oculus::OculusTouchControllerOpenXR>{LeftHand}/primarybutton
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Switch Mode
-        m_Flags: 0
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  navigationHand: 0
-  navigationType: 0
-  steeringTarget: {fileID: 7216047633976425185}
-  steeringDirection: 1
-  steeringSpeed: 4.19
-  verticalSteering: 0
-  teleportationTarget: {fileID: 7216047633976425185}
-  ray: {fileID: 8163903276498963859}
-  previewAvatar: {fileID: 4140303437583358541}
-  maxRayLength: 30
-  teleportLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  rotationTarget: {fileID: 0}
-  rotationReference: {fileID: 0}
-  rotationMode: 0
-  continuousRotationSpeed: 81
-  snapRotationAmount: 47
-  enableDirectionFlip: 0
 --- !u!1 &7216047634103647853
 GameObject:
   m_ObjectHideFlags: 0
@@ -7824,7 +7732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7718094589686494596, guid: 52b6a662c7eca814781f763c3e77f427, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7856,7 +7764,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1359809225703122640}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c6d9f2da7ff317428f90d8f188d831d, type: 3}
   m_Name: 
@@ -7876,17 +7784,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4663052315973873640, guid: 52b6a662c7eca814781f763c3e77f427, type: 3}
   m_PrefabInstance: {fileID: 5938416299605274569}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4140303437583358541 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7718094589686494596, guid: 52b6a662c7eca814781f763c3e77f427, type: 3}
-  m_PrefabInstance: {fileID: 5938416299605274569}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c6d9f2da7ff317428f90d8f188d831d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8507875694642889477 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2628824512526953676, guid: 52b6a662c7eca814781f763c3e77f427, type: 3}
