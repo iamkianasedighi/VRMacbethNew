@@ -6069,6 +6069,7 @@ GameObject:
   - component: {fileID: 5859476283269456884}
   - component: {fileID: 3676173494534268257}
   - component: {fileID: -5648398523464838618}
+  - component: {fileID: 1771117370469910370}
   m_Layer: 0
   m_Name: mile2HMDUserPrefab
   m_TagString: Untagged
@@ -6655,7 +6656,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7216047633976425198}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bec239e7631e90e4484850f43b05af30, type: 3}
   m_Name: 
@@ -6738,6 +6739,137 @@ MonoBehaviour:
   rotationMode: 0
   continuousRotationSpeed: 170
   snapRotationAmount: 61
+  enableDirectionFlip: 0
+--- !u!114 &1771117370469910370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7216047633976425198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 194458596c43b6644b494b30d17be9a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftThumbstick:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Left Thumbstick
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 76d26924-d17b-4144-a869-1052ed718290
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 8ef4c1d1-f3a8-49b8-ad05-23f8fa7292f2
+        m_Path: <XRController>{LeftHand}/{Primary2DAxis}
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Left Thumbstick
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  rightThumbstick:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Right Thumbstick
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 0b2b6399-fcf9-4d15-a749-f7e5deef0bd7
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: fdf96c1d-42c1-4cf0-b602-9c881fb97e78
+        m_Path: <XRController>{RightHand}/{Primary2DAxis}
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Right Thumbstick
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  leftTrigger:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Left Trigger
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 9b4fd32c-431f-4829-ba5a-1e893e1a86e7
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 39de279e-648d-4153-89e6-e4e8eb820a68
+        m_Path: <XRController>{LeftHand}/{TriggerButton}
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Left Trigger
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  rightTrigger:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Right Trigger
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: ad1d9067-f2ed-4a62-b93b-bb9eecbd53fa
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 54b67c92-415c-4a32-938e-ce5062c0b8d8
+        m_Path: <XRController>{RightHand}/{TriggerButton}
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Right Trigger
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  switchModeAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Switch Mode
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: b5e0bbf2-e181-40fa-b97c-c003c56ede94
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 31f9deeb-f368-49bd-969d-b7d063fa6c72
+        m_Path: <XRController>{LeftHand}/{PrimaryButton}
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Switch Mode
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  navigationHand: 0
+  navigationType: 0
+  steeringTarget: {fileID: 7216047633976425185}
+  steeringDirection: 1
+  steeringSpeed: 3
+  verticalSteering: 0
+  teleportationTarget: {fileID: 7216047633976425185}
+  ray: {fileID: 8163903276498963859}
+  previewAvatar: {fileID: 4140303437583358541}
+  maxRayLength: 30
+  teleportLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  rotationTarget: {fileID: 0}
+  rotationReference: {fileID: 0}
+  rotationMode: 0
+  continuousRotationSpeed: 240
+  snapRotationAmount: 30
   enableDirectionFlip: 0
 --- !u!1 &7216047634103647853
 GameObject:
